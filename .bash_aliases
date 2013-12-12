@@ -1,0 +1,1 @@
+alias weechat=weechat-curses
