@@ -57,12 +57,14 @@ echo "- Change CapsLock -> Control (In TweakTools > Typing > Ctrl key position)"
 echo "- Change theme manually"
 echo "- Add the minimize button"
 echo "- Change fonts to Sawasdee, Aurulent Sans, and monofur"
-echo "- Add dropdown terminal\n"
+echo "- Add dropdown terminal\n\n"
 echo "HARDWARE-SPECIFIC THINGS TO DO:"
 echo "- Add vertical scrolling for touchpad in 'Pointing Devices'"
 echo "- Install drivers for AMD GPU"
-echo "- Turn off bluetooth at startup
-(http://askubuntu.com/questions/67758/how-can-i-deactivate-bluetooth-on-system-startup)
-"
+echo "- Turn off bluetooth at startup (http://askubuntu.com/questions/67758/how-can-i-deactivate-bluetooth-on-system-startup) "
+echo "- Edit Terminal settings"
+echo "- If eclipse cannot install Android ADT/SDK:
+http://stackoverflow.com/questions/4249695/adt-requires-org-eclipse-wst-sse-core-0-0-0-but-it-could-not-be-found"
+
 cd ~
 exec bash						                        # restart  bash
