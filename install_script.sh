@@ -10,9 +10,8 @@ echo "Install script for Ubuntu on Thinkpad X120e"
 # repositories in their order: dark theme, sublime text 3, and flux
 repos=( "noobslab/themes" "webupd8team/sublime-text-3" "kilian/f.lux" )
 drivers=( "gpointing-device-settings" )
-programs=( "vim" "eclipse" "g++" "chromium-browser" "delorean-dark" "bleachbit"
-"synaptic" "dropbox" "filezilla" "keepass2" "sublime-text-installer" "weechat"
-"fluxgui" )
+programs=( "vim" "eclipse" "g++" "chromium-browser" "delorean-dark" "bleachbit" "synaptic" "dropbox" "filezilla" "keepass2" "sublime-text-installer" "weechat" "fluxgui" "thunderbird" )
+bloat=( "gbrainy" "aisleriot" "gbrainy gnome-games-*" "gnome-sudoku" "gnomine" "libme0" "mahjongg" "bogofilter*" "empathy*" "thunderbird*" "remmina" "gwibber*" "tomboy" "avahi-daemon" "transmission-*" "whoopsie" "samba*" "modemmanager" "ubuntuone*" "rhythmbox*" "activity-log-manager-common" "python-zeitgeist" "zeitgeist-core" "deja-dup" "pidgin*" "apport*" )
 space=' '
 
 # move bash_aliases file and vimrc file
@@ -25,13 +24,12 @@ do
     :
     sudo add-apt-repository ppa:$i
 done
-#sudo add-apt-repository ppa:noobslab/themes
 
 # update list of software
 sudo apt-get update
 
 # install software
-programs_list=' '
+programs_list=''
 for i in "${programs[@]}"
 do
     :
@@ -40,7 +38,7 @@ done
 sudo apt-get install $programs_list
 
 # install drivers
-drivers_list=' '
+drivers_list=''
 for i in "${drivers[@]}"
 do
     :
@@ -50,6 +48,15 @@ sudo apt-get install $drivers_list
 
 # upgrade software
 sudo apt-get upgrade
+
+# remove bloatware
+bloat_list=''
+for i in "${bloat[@]}"
+do
+    :
+    bloat_list=$bloat_list$space$i
+done
+sudo apt-get remove --purge --ignore-missing bloat_list
 
 # display what else needs to be fixed
 echo "THINGS TO DO:"
@@ -65,6 +72,7 @@ echo "- Turn off bluetooth at startup (http://askubuntu.com/questions/67758/how-
 echo "- Edit Terminal settings"
 echo "- If eclipse cannot install Android ADT/SDK:
 http://stackoverflow.com/questions/4249695/adt-requires-org-eclipse-wst-sse-core-0-0-0-but-it-could-not-be-found"
+echo "- Add shortcut for adjusting volume"
 
 cd ~
 exec bash						                        # restart  bash
