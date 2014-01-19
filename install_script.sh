@@ -2,7 +2,7 @@
 # Author: alpha-san
 # OS: Ubuntu 13.10+
 # Hardware: Thinkpad X120e
-# To Make Executable: chmod u+x
+# To Make Executable: chmod +x
 echo "Install script for Ubuntu on Thinkpad X120e"
 
 # repositories, programs, drivers
@@ -17,10 +17,12 @@ bloat=( "gbrainy" "aisleriot" "gbrainy gnome-games-*" "gnome-sudoku" "gnomine" "
 space=' '
 
 # move bash_aliases file and vimrc file
+echo "Moving bash_aliases and vimrc files to home dir..."
 sudo cp .vimrc ~/.vimrc
 sudo cp .bash_aliases ~/.bash_aliases
 
-# install necessary repoitories
+# install necessary repositories
+echo "Adding repositories, be prepared for 'YES' prompts"
 for i in "${repos[@]}"
 do
     :
@@ -31,6 +33,7 @@ done
 sudo apt-get update
 
 # install software
+echo "Preparing to install programs and drivers..."
 programs_list=''
 for i in "${programs[@]}"
 do
@@ -52,6 +55,7 @@ sudo apt-get install $drivers_list
 sudo apt-get upgrade
 
 # remove bloatware
+echo "Preparing to remove bloatware"
 bloat_list=''
 for i in "${bloat[@]}"
 do
@@ -61,9 +65,14 @@ done
 sudo apt-get remove --purge --ignore-missing bloat_list
 
 # install fonts
+echo "Installing aurulent and monofur fonts in .fonts dir"
 mkdir ~/.fonts
 unzip fonts/aurulent_sans.zip -d ~/.fonts
 unzip fonts/monofur.zip -d ~/.fonts
+
+# disable bluetooth on startup
+echo "Disabling bluetooth at startup"
+sudo sed -i '13i\\n#turn off bluetooth\nrfkill block bluetooth' /etc/rc.local
 
 # display what else needs to be fixed
 echo "THINGS TO DO:"
@@ -75,7 +84,6 @@ echo "- Add dropdown terminal\n\n"
 echo "HARDWARE-SPECIFIC THINGS TO DO:"
 echo "- Add vertical scrolling for touchpad in 'Pointing Devices'"
 echo "- Install drivers for AMD GPU"
-echo "- Turn off bluetooth at startup (http://askubuntu.com/questions/67758/how-can-i-deactivate-bluetooth-on-system-startup) "
 echo "- Edit Terminal settings"
 echo "- If eclipse cannot install Android ADT/SDK:
 http://stackoverflow.com/questions/4249695/adt-requires-org-eclipse-wst-sse-core-0-0-0-but-it-could-not-be-found"
