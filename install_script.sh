@@ -10,7 +10,9 @@ echo "Install script for Ubuntu on Thinkpad X120e"
 # repositories in their order: dark theme, sublime text 3, and flux
 repos=( "noobslab/themes" "webupd8team/sublime-text-3" "kilian/f.lux" )
 drivers=( "gpointing-device-settings" )
-programs=( "vim" "eclipse" "g++" "chromium-browser" "delorean-dark" "bleachbit" "synaptic" "dropbox" "filezilla" "keepass2" "sublime-text-installer" "weechat" "fluxgui" "thunderbird" )
+programs=( "vim" "eclipse" "g++" "chromium-browser" "delorean-dark" "bleachbit"
+"synaptic" "dropbox" "filezilla" "keepass2" "sublime-text-installer" "weechat"
+"fluxgui" "thunderbird" "fonts-tlwg-sawasdee" )
 bloat=( "gbrainy" "aisleriot" "gbrainy gnome-games-*" "gnome-sudoku" "gnomine" "libme0" "mahjongg" "bogofilter*" "empathy*" "thunderbird*" "remmina" "gwibber*" "tomboy" "avahi-daemon" "transmission-*" "whoopsie" "samba*" "modemmanager" "ubuntuone*" "rhythmbox*" "activity-log-manager-common" "python-zeitgeist" "zeitgeist-core" "deja-dup" "pidgin*" "apport*" )
 space=' '
 
@@ -57,6 +59,11 @@ do
     bloat_list=$bloat_list$space$i
 done
 sudo apt-get remove --purge --ignore-missing bloat_list
+
+# install fonts
+mkdir ~/.fonts
+unzip fonts/aurulent_sans.zip -d ~/.fonts
+unzip fonts/monofur.zip -d ~/.fonts
 
 # display what else needs to be fixed
 echo "THINGS TO DO:"
