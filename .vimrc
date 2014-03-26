@@ -72,6 +72,11 @@ set background=dark " When set to "dark", Vim will try to use colors that look
                     " Any other value is illegal.
  
 set mouse=a         " Enable the use of the mouse.
+
+" Save editing spot
+if has ("autocmd")
+	au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"
+endif
  
 filetype plugin indent on
 syntax on
